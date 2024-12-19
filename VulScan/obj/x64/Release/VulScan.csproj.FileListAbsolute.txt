@@ -1,0 +1,12 @@
+C:\Users\MyAlien\source\repos\VulScan\VulScan\bin\x64\Release\VulScan.exe.config
+C:\Users\MyAlien\source\repos\VulScan\VulScan\bin\x64\Release\VulScan.exe
+C:\Users\MyAlien\source\repos\VulScan\VulScan\bin\x64\Release\VulScan.pdb
+C:\Users\MyAlien\source\repos\VulScan\VulScan\obj\x64\Release\VulScan.csproj.AssemblyReference.cache
+C:\Users\MyAlien\source\repos\VulScan\VulScan\obj\x64\Release\VulScan.csproj.SuggestedBindingRedirects.cache
+C:\Users\MyAlien\source\repos\VulScan\VulScan\obj\x64\Release\VulScan.Form1.resources
+C:\Users\MyAlien\source\repos\VulScan\VulScan\obj\x64\Release\VulScan.Form2.resources
+C:\Users\MyAlien\source\repos\VulScan\VulScan\obj\x64\Release\VulScan.Properties.Resources.resources
+C:\Users\MyAlien\source\repos\VulScan\VulScan\obj\x64\Release\VulScan.csproj.GenerateResource.cache
+C:\Users\MyAlien\source\repos\VulScan\VulScan\obj\x64\Release\VulScan.csproj.CoreCompileInputs.cache
+C:\Users\MyAlien\source\repos\VulScan\VulScan\obj\x64\Release\VulScan.exe
+C:\Users\MyAlien\source\repos\VulScan\VulScan\obj\x64\Release\VulScan.pdb
