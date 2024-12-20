@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -58,7 +58,7 @@ namespace VulScan
 
                     // Enregistrer les logiciels dans un fichier CSV
                     string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                    string csvFile = Path.Combine(desktopPath, "installed_software.csv");
+                    string csvFile = Path.Combine(desktopPath, "2installed_software.csv");
 
                     SaveToCSV(softwareList, csvFile);
 
@@ -118,27 +118,18 @@ namespace VulScan
             }
             return softwareList;
         }
-        // Fonction pour enregistrer les logiciels dans deux fichiers CSV
+        // Fonction pour enregistrer les logiciels dans un fichier CSV
         private void SaveToCSV(List<Software> softwareList, string filePath)
         {
             try
             {
-                // Définir les chemins des fichiers CSV
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string microsoftAndWindowsCsvFile = Path.Combine(desktopPath, "microsoft_and_windows_software.csv");
-                string otherCsvFile = Path.Combine(desktopPath, "installed_software.csv");
-
-                // Utiliser StreamWriter pour écrire dans les fichiers CSV
-                using (var writerMicrosoftAndWindows = new StreamWriter(microsoftAndWindowsCsvFile, false, System.Text.Encoding.UTF8))
-                using (var writerOther = new StreamWriter(otherCsvFile, false, System.Text.Encoding.UTF8))
+                // Utiliser StreamWriter pour écrire dans un fichier CSV avec l'encodage UTF-8
+                using (var writer = new StreamWriter(filePath, false, System.Text.Encoding.UTF8))
                 {
-                    // Écrire l'en-tête du CSV pour les logiciels Microsoft et Windows
-                    writerMicrosoftAndWindows.WriteLine("Software,Version");
+                    // Écrire l'en-tête du CSV
+                    writer.WriteLine("Software,Version");
 
-                    // Écrire l'en-tête du CSV pour les autres logiciels
-                    writerOther.WriteLine("Software,Version");
-
-                    // Parcourir la liste des logiciels et les enregistrer dans les fichiers appropriés
+                    // Parcourir la liste des logiciels et écrire les informations dans chaque ligne
                     foreach (var software in softwareList)
                     {
                         // Assurez-vous que si une valeur est null, elle est remplacée par une chaîne vide
@@ -149,31 +140,17 @@ namespace VulScan
                         name = CleanSoftwareName(name);
                         version = CleanSoftwareVersion(version);
 
-                        // Vérifier si le nom du logiciel commence par "Microsoft" ou "Windows"
-                        if (name.StartsWith("Microsoft", StringComparison.OrdinalIgnoreCase) || name.StartsWith("Windows", StringComparison.OrdinalIgnoreCase))
-                        {
-                            // Écrire dans le fichier CSV pour les logiciels Microsoft et Windows
-                            writerMicrosoftAndWindows.WriteLine($"{name},{version}");
-                        }
-                        else
-                        {
-                            // Écrire dans le fichier CSV pour les autres logiciels
-                            writerOther.WriteLine($"{name},{version}");
-                        }
+                        // Écrire le nom du logiciel et la version dans le fichier CSV
+                        writer.WriteLine($"{name},{version}");
                     }
                 }
-
-                // Message de confirmation pour les fichiers CSV générés
-                //MessageBox.Show("Les fichiers CSV ont été générés : 'microsoft_and_windows_software.csv' et 'installed_software'.", "Scan terminé", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 // Gérer les erreurs liées à l'écriture du fichier
-                MessageBox.Show($"Erreur lors de la sauvegarde des fichiers CSV : {ex.Message}");
+                MessageBox.Show($"Erreur lors de la sauvegarde du fichier CSV : {ex.Message}");
             }
         }
-
-
 
         // Méthode pour nettoyer le nom du logiciel
         private string CleanSoftwareName(string name)
@@ -261,7 +238,7 @@ namespace VulScan
 
                 // Afficher le message box après la fin du scan
                 MessageBox.Show("Le scan est terminé. L'analyse des logiciels est terminée.", "Scan terminé", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Environment.Exit(0);  // Force la fermeture de l'application
+                //Environment.Exit(0);  // Force la fermeture de l'application
             }
         }
 
